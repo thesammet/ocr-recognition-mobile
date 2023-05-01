@@ -16,8 +16,8 @@ To use the app, follow these steps:
 
 1. Open the app on your device.
 2. On the home screen, you will see three buttons: Camera, Gallery, and Settings.
-3. Click the Camera button to open the camera and take a picture. The app will then perform OCR on the text within the image using the `react-native-tesseract-ocr` library and navigate to a new screen with the recognized text.
-4. Click the Gallery button to open your device's gallery and select an image. The app will then perform OCR on the text within the image using the `react-native-tesseract-ocr` library and navigate to a new screen with the recognized text.
+3. Click the Camera button to open the camera and take a picture. The app will then perform OCR on the text within the image using the `react-native-text-recognition` library and navigate to a new screen with the recognized text.
+4. Click the Gallery button to open your device's gallery and select an image. The app will then perform OCR on the text within the image using the `react-native-text-recognition` library and navigate to a new screen with the recognized text.
 5. Click the Settings button to navigate to the settings screen.
 
 ## Technologies Used
@@ -26,7 +26,7 @@ This app was built using:
 
 - React Native
 - React Navigation
-- `react-native-tesseract-ocr` library for OCR
+- `react-native-text-recognition` library for OCR
 
 ## Contributing
 
