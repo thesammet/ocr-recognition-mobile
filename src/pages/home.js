@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View, Image } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, ActivityIndicator, ScrollView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import ProgressCircle from 'react-native-progress/Circle';
 import TextRecognition from 'react-native-text-recognition';
 import Clipboard from '@react-native-clipboard/clipboard';
 
@@ -61,7 +60,7 @@ function Home({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContentContainer}>
       <Text style={styles.title}>OCR TEXT</Text>
       <View style={{ alignSelf: 'center' }}>
         <Button
@@ -97,11 +96,16 @@ function Home({ navigation }) {
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={imgSrc} />
           {isLoading ? (
-            <ProgressCircle showsText progress={progress} />
+            <ActivityIndicator />
           ) : (
             <View style={{ paddingHorizontal: 12, paddingTop: 4 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={{ fontSize: 20, color: '#617A55' }}>Result</Text>
+                <Button style={{ fontSize: 20, color: '#617A55' }}
+                  title="Result"
+                  onPress={() => {
+                    recognizeTextFromImage(imgSrc.uri);
+                  }}
+                />
                 <Button
                   title="Copy"
                   onPress={() => {
@@ -115,20 +119,23 @@ function Home({ navigation }) {
         </View>
       )
       }
-    </View >
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
     flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  scrollContentContainer: {
+    flexGrow: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   options: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: 10,
   },
   button: {

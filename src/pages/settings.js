@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 function DetailsScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>SETTİNGS SCREEN</Text>
+            <Text>SETTINGS SCREEN</Text>
         </View>
     );
 }
