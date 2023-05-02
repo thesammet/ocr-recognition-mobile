@@ -25,6 +25,7 @@ function Home({ navigation }) {
 
     try {
       const recognizedText = await TextRecognition.recognize(path);
+      navigation.navigate('OcrDetail', { resultText: recognizedText })
       setText(recognizedText);
     } catch (err) {
       console.error(err);
@@ -104,7 +105,7 @@ function Home({ navigation }) {
                 <Button
                   title="Copy"
                   onPress={() => {
-                    Clipboard.setString(text)
+                    Clipboard.setString(text.toString())
                   }}
                 />
               </View>
