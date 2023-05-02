@@ -6,7 +6,7 @@ OCR-Text is a React Native app that allows users to take a picture or select an 
 
 To install the app, follow these steps:
 
-1. Clone the repo to your local machine: `git clone https://github.com/thesammet/ocr_text.git`
+1. Clone the repo to your local machine: `git clone git clone https://github.com/thesammet/ocr-text`
 2. Navigate to the project directory: `cd ocr_text`
 3. Install the dependencies: `npm install` or `yarn install`
 
@@ -16,9 +16,10 @@ To use the app, follow these steps:
 
 1. Open the app on your device.
 2. On the home screen, you will see three buttons: Camera, Gallery, and Settings.
-3. Click the Camera button to open the camera and take a picture. The app will then perform OCR on the text within the image using the `react-native-text-recognition` library and navigate to a new screen with the recognized text.
-4. Click the Gallery button to open your device's gallery and select an image. The app will then perform OCR on the text within the image using the `react-native-text-recognition` library and navigate to a new screen with the recognized text.
-5. Click the Settings button to navigate to the settings screen.
+3. Click the Camera button to open the camera and take a picture. The app will then perform OCR on the text within the image using the OCR library and navigate to a new screen with the recognized text.
+4. Click the Gallery button to open your device's gallery and select an image. The app will then perform OCR on the text within the image using the OCR library and navigate to a new screen with the recognized text.
+5. In detail screen, image recognized with the OCR library and give the text. If you want search word you want and retry those steps come to backward.
+6. Click the Settings button to navigate to the settings screen.
 
 ## Technologies Used
 
