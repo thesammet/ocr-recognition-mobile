@@ -1,13 +1,13 @@
-# OCR-Text
+# OCR-Recognition-Mobile
 
-OCR-Text is a React Native app that allows users to take a picture or select an image from their gallery and perform OCR on the text within the image.
+OCR RECOGNITION MOBILE is a React Native app that allows users to take a picture or select an image from their gallery and perform OCR on the text within the image.
 
 ## Installation
 
 To install the app, follow these steps:
 
-1. Clone the repo to your local machine: `git clone git clone https://github.com/thesammet/ocr-text`
-2. Navigate to the project directory: `cd ocr_text`
+1. Clone the repo to your local machine: `git clone git clone https://github.com/thesammet/ocr-recognition-mobile`
+2. Navigate to the project directory: `cd ocr-recognition-mobile`
 3. Install the dependencies: `npm install` or `yarn install`
 
 ## Usage
