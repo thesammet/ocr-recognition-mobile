@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/AvenirNextLTPro-Demi.ttf",
+      "sha1": "2b72b5fc9725143e7a7ffce523fee5420314c74a"
+    },
+    {
+      "path": "src/assets/fonts/AvenirNextLTPro-Regular.ttf",
+      "sha1": "35f6117e80b205a3d716cf8ff10e7373ef51bde9"
+    }
+  ]
+}

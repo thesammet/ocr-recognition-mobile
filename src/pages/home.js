@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View, Image, ActivityIndicator, ScrollView } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import TextRecognition from 'react-native-text-recognition';
 import Clipboard from '@react-native-clipboard/clipboard';
+import color from '../constants/color';
+import typography from '../constants/typography';
+import { Logo } from '../image/index';
+import { CameraShutterSvgrepoCom, ImageSquareSvgrepoCom, PdfFileSvgrepoCom } from '../components/icons';
 
 const DEFAULT_HEIGHT = 500;
 const DEFAULT_WITH = 600;
@@ -60,106 +64,88 @@ function Home({ navigation }) {
   };
 
   return (
-    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContentContainer}>
-      <Text style={styles.title}>OCR TEXT</Text>
-      <View style={{ alignSelf: 'center' }}>
-        <Button
-          disabled={isLoading}
-          title="Settings"
-          onPress={() => {
-            navigation.navigate('Settings')
-          }}
-        />
+    <View style={[styles.container, { backgroundColor: color.bgBlue }]}>
+      <View style={{ flex: 2, justifyContent: 'center' }}>
+        <View style={{ flex: 6 }} />
+        <View style={{ flex: 4 }}>
+          <Image source={Logo}
+            style={{
+              height: 100,
+              width: 100,
+
+            }} />
+        </View>
       </View>
-      <Text style={styles.instructions}>Select an image source:</Text>
+
       <View style={styles.options}>
-        <View style={styles.button}>
-          <Button
-            disabled={isLoading}
-            title="Camera"
-            onPress={() => {
-              recognizeFromCamera();
-            }}
-          />
-        </View>
-        <View style={styles.button}>
-          <Button
-            disabled={isLoading}
-            title="Gallery"
-            onPress={() => {
-              recognizeFromPicker();
-            }}
-          />
-        </View>
+        <Text style={[styles.welcome, { color: color.white }, typography.apply().DemiHello]}>WELCOME</Text>
+        <Text style={[styles.instructions, { color: color.white }, typography.apply().Regular]}>Import an image to be coverted</Text>
+        <TouchableOpacity
+          onPress={() => { }}
+          style={styles.button}>
+          <View style={styles.icon}>
+            <CameraShutterSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
+          </View>
+          <Text style={[{ color: color.black }, typography.apply().Demi]}>TAKE A PICTURE</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { }}
+          style={styles.button}>
+          <View style={styles.icon}>
+            <ImageSquareSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
+          </View>
+          <Text style={[{ color: color.black }, typography.apply().Demi]}>GALLERY</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { }}
+          style={styles.button}>
+          <View style={styles.icon}>
+            <PdfFileSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
+          </View>
+          <Text style={[{ color: color.black }, typography.apply().Demi]}>IMPORT PDF</Text>
+        </TouchableOpacity>
       </View>
-      {imgSrc && (
-        <View style={styles.imageContainer}>
-          <Image style={styles.image} source={imgSrc} />
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : (
-            <View style={{ paddingHorizontal: 12, paddingTop: 4 }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Button style={{ fontSize: 20, color: '#617A55' }}
-                  title="Result"
-                  onPress={() => {
-                    recognizeTextFromImage(imgSrc.uri);
-                  }}
-                />
-                <Button
-                  title="Copy"
-                  onPress={() => {
-                    Clipboard.setString(text.toString())
-                  }}
-                />
-              </View>
-              <Text>{text}</Text>
-            </View>
-          )}
-        </View>
-      )
-      }
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: {
+  container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
-  },
-  scrollContentContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center',
   },
   options: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
-    padding: 10,
-  },
-  button: {
-    marginHorizontal: 10,
+    flex: 5
   },
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: {
-    marginVertical: 15,
-    height: DEFAULT_HEIGHT / 2.5,
-    width: DEFAULT_WITH / 2.5,
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    marginBottom: 12
   },
+  welcome: {
+    textAlign: 'center',
+    fontSize: 24,
+    letterSpacing: 1,
+    marginBottom: 24
+  },
+  button: {
+    backgroundColor: color.yellow,
+    alignItems: 'center',
+    borderRadius: 16,
+    paddingVertical: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 24
+  },
+  icon: {
+    marginLeft: 18,
+    marginRight: 22
+  }
 });
 
 export default Home;
