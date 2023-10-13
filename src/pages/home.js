@@ -18,31 +18,24 @@ const defaultPickerOptions = {
 
 function Home({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [imgSrc, setImgSrc] = useState(null);
-  const [text, setText] = useState('');
 
 
   const recognizeTextFromImage = async (path) => {
     setIsLoading(true);
 
     try {
-      const recognizedText = await TextRecognition.recognize(path);
-      navigation.navigate('OcrDetail', { resultText: recognizedText })
-      setText(recognizedText);
+      const recognizedTextArray = await TextRecognition.recognize(path);
+      console.log(recognizedTextArray)
+      navigation.navigate('OcrDetail', { resultText: recognizedTextArray })
     } catch (err) {
       console.error(err);
-      setText('');
     }
-
     setIsLoading(false);
-    setProgress(0);
   };
 
   const recognizeFromPicker = async (options = defaultPickerOptions) => {
     try {
       const image = await ImagePicker.openPicker(options);
-      setImgSrc({ uri: image.path });
       await recognizeTextFromImage(image.path);
     } catch (err) {
       if (err.message !== 'User cancelled image selection') {
@@ -81,7 +74,7 @@ function Home({ navigation }) {
         <Text style={[styles.welcome, { color: color.white }, typography.apply().DemiHello]}>WELCOME</Text>
         <Text style={[styles.instructions, { color: color.white }, typography.apply().Regular]}>Import an image to be coverted</Text>
         <TouchableOpacity
-          onPress={() => { }}
+          onPress={() => { recognizeFromCamera() }}
           style={styles.button}>
           <View style={styles.icon}>
             <CameraShutterSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
@@ -89,7 +82,7 @@ function Home({ navigation }) {
           <Text style={[{ color: color.black }, typography.apply().Demi]}>TAKE A PICTURE</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => { }}
+          onPress={() => { recognizeFromPicker() }}
           style={styles.button}>
           <View style={styles.icon}>
             <ImageSquareSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
