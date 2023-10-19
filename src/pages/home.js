@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import TextRecognition from 'react-native-text-recognition';
-import Clipboard from '@react-native-clipboard/clipboard';
 import color from '../constants/color';
 import typography from '../constants/typography';
 import { Logo } from '../image/index';
-import { CameraShutterSvgrepoCom, ImageSquareSvgrepoCom, PdfFileSvgrepoCom } from '../components/icons';
+import { CameraShutterSvgrepoCom, ImageSquareSvgrepoCom, PdfFileSvgrepoComBlack } from '../components/icons';
+import DocumentPicker from 'react-native-document-picker'
 
 const DEFAULT_HEIGHT = 500;
 const DEFAULT_WITH = 600;
@@ -14,18 +14,16 @@ const defaultPickerOptions = {
   cropping: true,
   height: DEFAULT_HEIGHT,
   width: DEFAULT_WITH,
+  freeStyleCropEnabled: true
 };
 
 function Home({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
 
-
   const recognizeTextFromImage = async (path) => {
     setIsLoading(true);
-
     try {
       const recognizedTextArray = await TextRecognition.recognize(path);
-      console.log(recognizedTextArray)
       navigation.navigate('OcrDetail', { resultText: recognizedTextArray })
     } catch (err) {
       console.error(err);
@@ -47,7 +45,6 @@ function Home({ navigation }) {
   const recognizeFromCamera = async (options = defaultPickerOptions) => {
     try {
       const image = await ImagePicker.openCamera(options);
-      setImgSrc({ uri: image.path });
       await recognizeTextFromImage(image.path);
     } catch (err) {
       if (err.message !== 'User cancelled image selection') {
@@ -55,6 +52,24 @@ function Home({ navigation }) {
       }
     }
   };
+
+  /* const recognizeFromPdf = async () => {
+    const pdfParser = new PDFParser();
+    try {
+      const response = await DocumentPicker.pick({
+        presentationStyle: 'pageSheet',
+      });
+      RNFS.readFile(response[0].uri, (err, pdfBuffer) => {
+        if (!err) {
+          pdfParser.on("readable", meta => console.log("PDF Metadata", meta));
+        }
+      })
+
+      await recognizeTextFromImage(response[0].uri);
+    } catch (err) {
+      console.error(err);
+    }
+  }; */
 
   return (
     <View style={[styles.container, { backgroundColor: color.bgBlue }]}>
@@ -89,14 +104,14 @@ function Home({ navigation }) {
           </View>
           <Text style={[{ color: color.black }, typography.apply().Demi]}>GALLERY</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => { }}
+        {/* <TouchableOpacity
+          onPress={() => { recognizeFromPdf() }}
           style={styles.button}>
           <View style={styles.icon}>
-            <PdfFileSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
+            <PdfFileSvgrepoComBlack width={24} height={24} color={color.black} opacity={0.8} />
           </View>
           <Text style={[{ color: color.black }, typography.apply().Demi]}>IMPORT PDF</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
