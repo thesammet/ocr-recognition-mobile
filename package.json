@@ -34,7 +34,8 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "^13.14.0",
     "react-native-text-recognition": "^1.0.0",
-    "react-native-toast-message": "^2.1.6"
+    "react-native-toast-message": "^2.1.6",
+    "react-native-tracking-transparency": "^0.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
