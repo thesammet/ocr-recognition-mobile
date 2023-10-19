@@ -14,9 +14,11 @@ const iosTrack = async () => {
   }
 };
 function App() {
+
   useEffect(() => {
     Platform.OS === 'ios' && iosTrack();
   }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: color.bgBlue }}>
       <NavigationContainer>
