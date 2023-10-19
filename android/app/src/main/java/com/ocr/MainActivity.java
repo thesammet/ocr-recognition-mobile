@@ -1,4 +1,4 @@
-package com.ocr;
+package com.abdusamedakgul.turboocr;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

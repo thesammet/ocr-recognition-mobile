@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import TextRecognition from 'react-native-text-recognition';
 import color from '../constants/color';
@@ -72,39 +72,45 @@ function Home({ navigation }) {
   }; */
 
   return (
-    <View style={[styles.container, { backgroundColor: color.bgBlue }]}>
-      <View style={{ flex: 2, justifyContent: 'center' }}>
-        <View style={{ flex: 6 }} />
-        <View style={{ flex: 4 }}>
-          <Image source={Logo}
-            style={{
-              height: 100,
-              width: 100,
+    <>
+      {isLoading ?
+        (<View style={{ flex: 1, backgroundColor: color.bgBlue, justifyContent: 'center' }}>
+          <ActivityIndicator size="large" color={color.white} />
+          <Text style={[{ color: color.white, textAlign: 'center', paddingTop: 12 }, typography.apply().Demi]}>Text is being prepared...</Text>
+        </View>) :
+        (<View style={[styles.container, { backgroundColor: color.bgBlue }]}>
+          <View style={{ flex: 2, justifyContent: 'center' }}>
+            <View style={{ flex: 6 }} />
+            <View style={{ flex: 4 }}>
+              <Image source={Logo}
+                style={{
+                  height: 100,
+                  width: 100,
 
-            }} />
-        </View>
-      </View>
+                }} />
+            </View>
+          </View>
 
-      <View style={styles.options}>
-        <Text style={[styles.welcome, { color: color.white }, typography.apply().DemiHello]}>WELCOME</Text>
-        <Text style={[styles.instructions, { color: color.white }, typography.apply().Regular]}>Import an image to be coverted</Text>
-        <TouchableOpacity
-          onPress={() => { recognizeFromCamera() }}
-          style={styles.button}>
-          <View style={styles.icon}>
-            <CameraShutterSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
-          </View>
-          <Text style={[{ color: color.black }, typography.apply().Demi]}>TAKE A PICTURE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => { recognizeFromPicker() }}
-          style={styles.button}>
-          <View style={styles.icon}>
-            <ImageSquareSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
-          </View>
-          <Text style={[{ color: color.black }, typography.apply().Demi]}>GALLERY</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity
+          <View style={styles.options}>
+            <Text style={[styles.welcome, { color: color.white }, typography.apply().DemiHello]}>WELCOME</Text>
+            <Text style={[styles.instructions, { color: color.white }, typography.apply().Regular]}>Import an image to be coverted</Text>
+            <TouchableOpacity
+              onPress={() => { recognizeFromCamera() }}
+              style={styles.button}>
+              <View style={styles.icon}>
+                <CameraShutterSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
+              </View>
+              <Text style={[{ color: color.black }, typography.apply().Demi]}>TAKE A PICTURE</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { recognizeFromPicker() }}
+              style={styles.button}>
+              <View style={styles.icon}>
+                <ImageSquareSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
+              </View>
+              <Text style={[{ color: color.black }, typography.apply().Demi]}>GALLERY</Text>
+            </TouchableOpacity>
+            {/* <TouchableOpacity
           onPress={() => { recognizeFromPdf() }}
           style={styles.button}>
           <View style={styles.icon}>
@@ -112,8 +118,9 @@ function Home({ navigation }) {
           </View>
           <Text style={[{ color: color.black }, typography.apply().Demi]}>IMPORT PDF</Text>
         </TouchableOpacity> */}
-      </View>
-    </View>
+          </View>
+        </View>)}
+    </>
   );
 }
 

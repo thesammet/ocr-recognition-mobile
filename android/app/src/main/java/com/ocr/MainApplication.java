@@ -1,4 +1,4 @@
-package com.ocr;
+package com.abdusamedakgul.turboocr;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

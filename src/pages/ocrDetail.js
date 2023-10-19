@@ -117,7 +117,7 @@ const OcrDetail = ({ route, navigation }) => {
                                 {
                                     backgroundColor: color.bgBlue,
                                     bottom: keyboard.keyboardShown
-                                        ? 48
+                                        ? 36
                                         : 10,
                                 },
                             ]}>
@@ -134,7 +134,10 @@ const OcrDetail = ({ route, navigation }) => {
                                 keyboardType="default"
                             />
                             <TouchableOpacity
-                                onPress={(value) => { onChangeAdmissionComment(''); Keyboard.dismiss() }}
+                                onPress={(value) => {
+                                    onChangeAdmissionComment('');
+                                    Keyboard.dismiss()
+                                }}
                                 activeOpacity={0.8}>
                                 <ClearInverseReflectHorizontalSvgrepoCom width="36" height="36" />
                             </TouchableOpacity>
@@ -142,7 +145,10 @@ const OcrDetail = ({ route, navigation }) => {
                         {
                             !keyboard.keyboardShown &&
                             <TouchableOpacity
-                                onPress={() => { setKeyboardShowBool(false) }}
+                                onPress={() => {
+                                    onChangeAdmissionComment('');
+                                    setKeyboardShowBool(false)
+                                }}
                                 style={[styles.button, { paddingBottom: 64, paddingTop: 8 }]}
                                 activeOpacity={0.6}>
                                 <CloseSvgrepoCom width={30} height={30} />
@@ -152,13 +158,13 @@ const OcrDetail = ({ route, navigation }) => {
 
             {!keyboard.keyboardShown &&
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity
+                    {/*  <TouchableOpacity
                         onPress={() => { createPDF() }}
                         style={styles.button}
                         activeOpacity={0.6}>
                         <PdfFileSvgrepoCom width={30} height={30} />
                         <Text style={[styles.bottomText, typography.apply().Demi]}>PDF</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity
                         onPress={() => { copyToClipboard() }}
                         style={styles.button}
@@ -242,6 +248,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         paddingHorizontal: 16,
         borderRadius: 12,
+        flex: 1
     },
     noComment: {
         textAlign: 'center',

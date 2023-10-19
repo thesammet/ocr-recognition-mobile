@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.ocr"
+    namespace "com.abdusamedakgul.turboocr"
     defaultConfig {
-        applicationId "com.ocr"
+        applicationId "com.abdusamedakgul.turboocr"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
