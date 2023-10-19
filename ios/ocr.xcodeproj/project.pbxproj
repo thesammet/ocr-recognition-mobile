@@ -519,6 +519,7 @@
 				PRODUCT_NAME = ocr;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -545,6 +546,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdusamedakgul.turboocr;
 				PRODUCT_NAME = ocr;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
