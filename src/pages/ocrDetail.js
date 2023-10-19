@@ -21,6 +21,7 @@ import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import Clipboard from '@react-native-clipboard/clipboard';
 import RNFS from 'react-native-fs';
 import { useKeyboard } from '@react-native-community/hooks';
+import { errorMessage, successMessage } from '../utils/showToast';
 
 const OcrDetail = ({ route, navigation }) => {
     const [propText, setPropText] = useState(route.params.resultText);
@@ -54,6 +55,7 @@ const OcrDetail = ({ route, navigation }) => {
     const copyToClipboard = () => {
         const formattedString = propText.join('\n');
         Clipboard.setString(formattedString);
+        successMessage("Text is successfully copied to clipboard.")
     };
 
     const onShare = async () => {
@@ -64,16 +66,12 @@ const OcrDetail = ({ route, navigation }) => {
                     formattedString
             });
             if (result.action === Share.sharedAction) {
-                if (result.activityType) {
-                    // shared with activity type of result.activityType
-                } else {
-                    // shared
-                }
+                successMessage("Text is successfully shared.")
             } else if (result.action === Share.dismissedAction) {
                 // dismissed
             }
         } catch (error) {
-            Alert.alert(error.message);
+            errorMessage("Error occured when shared your text.")
         }
     };
 

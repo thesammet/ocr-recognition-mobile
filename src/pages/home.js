@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import TextRecognition from 'react-native-text-recognition';
@@ -7,6 +7,7 @@ import typography from '../constants/typography';
 import { Logo } from '../image/index';
 import { CameraShutterSvgrepoCom, ImageSquareSvgrepoCom, PdfFileSvgrepoComBlack } from '../components/icons';
 import DocumentPicker from 'react-native-document-picker'
+import { errorMessage, successMessage } from '../utils/showToast';
 
 const DEFAULT_HEIGHT = 500;
 const DEFAULT_WITH = 600;
@@ -27,6 +28,7 @@ function Home({ navigation }) {
       navigation.navigate('OcrDetail', { resultText: recognizedTextArray })
     } catch (err) {
       console.error(err);
+      errorMessage("Error occured! Try again")
     }
     setIsLoading(false);
   };
@@ -39,6 +41,7 @@ function Home({ navigation }) {
       if (err.message !== 'User cancelled image selection') {
         console.error(err);
       }
+      errorMessage("Error occured! Try again")
     }
   };
 
@@ -50,6 +53,7 @@ function Home({ navigation }) {
       if (err.message !== 'User cancelled image selection') {
         console.error(err);
       }
+      errorMessage("Error occured! Try again")
     }
   };
 
