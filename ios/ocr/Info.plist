@@ -38,13 +38,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to the camera.</string>
+	<string>Allow the app to access the camera for OCR image-to-text functionality.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app does not require access to the microphone.</string>
+	<string>Allow the app to access the microphone for audio input functionality.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires access to the photo library.</string>
+	<string>Allow the app to access the photo library for OCR image-to-text functionality.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AvenirNextLTPro-Demi.ttf</string>
