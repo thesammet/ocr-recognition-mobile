@@ -8,6 +8,8 @@ import { Logo } from '../image/index';
 import { CameraShutterSvgrepoCom, ImageSquareSvgrepoCom, PdfFileSvgrepoComBlack } from '../components/icons';
 import DocumentPicker from 'react-native-document-picker'
 import { errorMessage, successMessage } from '../utils/showToast';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement, reset } from '../redux/actions/index';
 
 const DEFAULT_HEIGHT = 500;
 const DEFAULT_WITH = 600;
@@ -75,6 +77,18 @@ function Home({ navigation }) {
     }
   }; */
 
+  /* const dispatch = useDispatch();
+
+  const count = useSelector((store) => store.count);
+
+  const handleIncrement = () => {
+    dispatch(increment());
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrement());
+  }; */
+
   return (
     <>
       {isLoading ?
@@ -114,6 +128,18 @@ function Home({ navigation }) {
               </View>
               <Text style={[{ color: color.black }, typography.apply().Demi]}>GALLERY</Text>
             </TouchableOpacity>
+            {/* <Text style={styles.title_text}>Counter App</Text>
+            <Text style={styles.counter_text}>{count}</Text>
+
+            <TouchableOpacity onPress={handleIncrement} style={styles.btn}>
+              <Text style={styles.btn_text}> Increment </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={handleDecrement}
+              style={{ ...styles.btn, backgroundColor: '#6e3b3b' }}>
+              <Text style={styles.btn_text}> Decrement </Text>
+            </TouchableOpacity> */}
             {/* <TouchableOpacity
           onPress={() => { recognizeFromPdf() }}
           style={styles.button}>
