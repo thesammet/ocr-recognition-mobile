@@ -5,11 +5,12 @@ import TextRecognition from 'react-native-text-recognition';
 import color from '../constants/color';
 import typography from '../constants/typography';
 import { Logo } from '../image/index';
-import { CameraShutterSvgrepoCom, ImageSquareSvgrepoCom, PdfFileSvgrepoComBlack } from '../components/icons';
+import { CameraShutterSvgrepoCom, ImageSquareSvgrepoCom, CrownSvgrepoCom, PremiumSvgrepoCom, SolveSvgrepoCom } from '../components/icons';
 import DocumentPicker from 'react-native-document-picker'
 import { errorMessage, successMessage } from '../utils/showToast';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, reset } from '../redux/actions/index';
+import { generateResponseGPT } from '../utils/chatGptService';
 
 const DEFAULT_HEIGHT = 500;
 const DEFAULT_WITH = 600;
@@ -51,6 +52,22 @@ function Home({ navigation }) {
     try {
       const image = await ImagePicker.openCamera(options);
       await recognizeTextFromImage(image.path);
+    } catch (err) {
+      if (err.message !== 'User cancelled image selection') {
+        console.error(err);
+      }
+      errorMessage("Error occured! Try again")
+    }
+  };
+
+  const [messages, setMessages] = useState([]);
+
+  const solveFromCameraGPT = async (options = defaultPickerOptions) => {
+    try {
+      const image = await ImagePicker.openPicker(options);
+      const recognizedTextArray = await TextRecognition.recognize(image.path);
+      const botResponse = await generateResponseGPT(recognizedTextArray);
+      navigation.navigate('SolveDetail', { resultText: botResponse.content, questionText: recognizedTextArray })
     } catch (err) {
       if (err.message !== 'User cancelled image selection') {
         console.error(err);
@@ -128,6 +145,23 @@ function Home({ navigation }) {
               </View>
               <Text style={[{ color: color.black }, typography.apply().Demi]}>GALLERY</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { solveFromCameraGPT() }}
+              style={[styles.button, styles.premiumAlign, { backgroundColor: color.darkYellow }]}>
+              <View style={styles.firstPart}>
+                <View style={styles.icon}>
+                  <SolveSvgrepoCom width={24} height={24} color={color.black} opacity={0.8} />
+                </View>
+                <Text style={[{ color: color.black }, typography.apply().Demi]}>ASK to AI</Text>
+              </View>
+              <View style={styles.containerPremium}>
+                <CrownSvgrepoCom
+                  width={24}
+                  height={24}
+                  color={color.black} />
+                <View style={styles.circlePremium}></View>
+              </View>
+            </TouchableOpacity>
             {/* <Text style={styles.title_text}>Counter App</Text>
             <Text style={styles.counter_text}>{count}</Text>
 
@@ -184,12 +218,29 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingVertical: 12,
     flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 24
   },
   icon: {
     marginLeft: 18,
     marginRight: 22
+  },
+  containerPremium: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  circlePremium: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    position: 'absolute',
+  },
+  firstPart: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  premiumAlign: {
+    justifyContent: 'space-between',
+    paddingRight: 18
   }
 });
 

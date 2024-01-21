@@ -5,4 +5,5 @@ export default COLORS = {
     black: '#333333',
     white: '#ffffff',
     bgBlue: '#00a4e4',
+    darkYellow: '#FFA500'
 }
